@@ -1,51 +1,60 @@
-const api_key = "916fb2c9d3604c4ccfa4dcdfe747b582"
-const searchformEl = document.querySelector("#searchform");
+const api_key = `916fb2c9d3604c4ccfa4dcdfe747b582`
 const searchterm = document.querySelector("#searchmovie");
-const loaderEl = document.querySelector(".loader");
-const moviesresultsEl = document.querySelector("#moviesresults");
-const searchbutEl = document.querySelector(".searchbut");
+const searchsub = document.querySelector("#searchform");
+const moviesresultsEl = document.querySelector("#movieresults");
 const loadmorebutEl = document.querySelector("#loadmorebut");
-const moviedetEl = document.querySelector(".moviedet")
 
-var movieimgEl = document.querySelector("#movieimg");
-var movietitleEl = document.querySelector("#movietitle");
-/*var movienameEl = document.querySelector("#moviename");*/
 
-var searchurl =`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${searchterm}`
-var q = ' ';
+
+
+const searchurl =`https://api.themoviedb.org/3/search/movie`
+var more= false;
+var currentSearchTerm = ' ';
 var pageSize = 10;
+ var length = " ";
 var currentApiPage = 0;
-const url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}`;
-var movieimgurl =`https://api.themoviedb.org/3/search/movie/${moviesresultsEl}/images?api_key=${api_key}`
+const url = `https://api.themoviedb.org/3/search/movie`;
+const nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing`;
+const movieImgUrl = `https://api.themoviedb.org/3/movie`;
+//`https://api.themoviedb.org/3/movie/now_playing?api_key=916fb2c9d3604c4ccfa4dcdfe747b582&language=en-US&page=1`
 
-
-
-async function GettingData(searchterm){
-   
-    searchurl += "?" + searchterm;
+async function Nowplay(){
     const offset = currentApiPage * pageSize;
-    var response = await fetch(searchurl);
-    var data = await response.json();
-    
-    gerenateNamemovie(data.movies);
-    console.log(data);
+    let response = await fetch(nowPlayingUrl + "?api_key=" + api_key)
+    //const response = await fetch(nowPlayingUrl  + "?api_key=" + api_key);
+    var data3 = await response.json();
+    var movies = data3.results;
+    console.log(movies);
+    gerenateNamemovie(movies);
+  
+
 }
-
-
-async function gerenateNamemovie(moviesresultsEl){
+async function GettingData(searchTerm){
    
-
-    data.forEach(data => {
-   ` <img src="${movieimgEl}">
-   <span> ${movietitleEl} </span>`})
-   moviesresultsEl.append(movieimgEl)
-   moviesresultsEl.append(movietitleEl)
-   var response2 = await fetch(movieimgurl);
-   var data2 = await response.json();
-   console.log(data2);
+    //searchurl += "?" + searchterm;
+    const offset = currentApiPage * pageSize;
+    let response = await fetch(searchurl + "?api_key=" + api_key + "&query=" + searchTerm);
+    var data = await response.json();
+    var movies3 = data.results;
+    console.log(movies3);
+    gerenateNamemovie(movies3);
+    
 }
 
 
+async function gerenateNamemovie(movies){
+if(more != true)
+{
+    moviesresultsEl.innerHTML = ""
+}
+for(let i=0; i < movies.length; i++)
+{
+    moviesresultsEl.innerHTML += `<div class= "moviedet">
+    <img src="https://images.tmdb.org/t/p/w500${movies[i].poster_path}">
+    <h1 id="titles"> ${movies[i].title} <br/> 🌟 ${movies[i].vote_average} </h1>
+<div>`
+}
+}
 
 /*function getMoremovies(movie){
 
@@ -55,26 +64,32 @@ async function gerenateNamemovie(moviesresultsEl){
 
 }*/
 
-async function FormSubmit(event) {
-    event.preventDefault();
-    /*moviesresultsEl.innerHTML = '';*/
-    q = searchterm.value;
-    const results = await GettingData(q);
-  gerenateNamemovie(moviesresultsEl);
-    searchingEl.value = '';
+  searchsub.addEventListener("submit", async (event) => {
+
+    event.preventDefault(); // stop page from reloading
+    moviesresultsEl.innerHTML = ''; 
+    let searchterm = event.target.searching.value;
+    let currentSearchTerm = searchterm.replace(/ /g,"+");
+    GettingData(currentSearchTerm);
+    
     currentApiPage++;
     loadmorebutEl.classList.remove('hidden');
-}
+ })
 
-searchformEl.addEventListener('submit', FormSubmit); /*=> {
-    console.log(event.target.searchingEl.value);
-    GettingData(event.target.searchingEl.value);
-} )*/
+//searchsub.addEventListener('submit', FormSubmit => {
+   //console.log(event.target.searchingEl.value);
+   // GettingData(event.target.searchingEl.value);
+
 
 async function LoaderClick(event) {
-    const results = await GettingData(q);
+    const results = await GettingData(currentSearchTerm);
     gerenateNamemovie(movies);
     currentApiPage++;
+    more = true;
 }
 
 loadmorebutEl.addEventListener('click', LoaderClick);
+
+window.onload=()=>{
+  Nowplay()
+}

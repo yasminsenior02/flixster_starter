@@ -2,12 +2,11 @@
 
 ## Week 1 Assignment: Flixster
 
-Submitted by: **NAME**
+Submitted by: Yasmin Senior
 
-Estimated time spent: **#** hours spent in total
+Estimated time spent: 7 hours spent in total
 
-Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
-
+Deployed Application (optional): [Flixster Deployed Site]http://127.0.0.1:5500/?searching=ji
 ### Application Features
 
 #### CORE FEATURES
