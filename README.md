@@ -1,5 +1,3 @@
-📝 `NOTE` Use this template to initialize the contents of a README.md file for your application. As you work on your assignment over the course of the week, update the required or stretch features lists to indicate which features you have completed by changing `[ ]` to `[x]`. (🚫 Remove this paragraph before submitting your assignment.)
-
 ## Week 1 Assignment: Flixster
 
 Submitted by: Yasmin Senior
@@ -59,8 +57,6 @@ I would've got my load more to work and be displayed at the end of the screen. S
 What went well in my project is being able to display my now playing screen and also being able to effectively use my search button as well. I think this made a major difference in my project because it took me a long time to implement both but as soon as I got my now playing screen to work it made the search easier. Something I noticed that my parents did is also to be able to hold her over the movie to display the description and if I had more time I would've effectively coded the movie description.
 
 ### Open-source libraries used
-
-- Add any links to open-source libraries used in your project.
 
 ### Shout out
 
