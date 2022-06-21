@@ -4,7 +4,7 @@ Submitted by: Yasmin Senior
 
 Estimated time spent: 14 hours spent in total
 
-Deployed Application (optional): [Flixster Deployed Site]http://127.0.0.1:5500/?searching=hi
+Deployed Application (optional): [Flixster Deployed Site]`http://127.0.0.1:5500/?searching=hi`
 
 ### Application Features
 
