@@ -1,24 +1,53 @@
-*{
-    background : linear-gradient(to bottom right, #da9d2e , white);
+body {
+  background: linear-gradient(to right, #da9d2e, rgb(242, 242, 242));
+}
+header {
+  background-color: lemonchiffon;
+}
+#name {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 70px;
+  padding: 10px;
+  color: orangered;
+}
+.movie-card {
+  flex-wrap: wrap;
+  margin: 20px;
 }
 
-#movieresults {
-   
- 
-   
-    display: grid;
-    grid-template-columns: repeat(5, 80px);
-    gap: 750px;
-    grid-auto-rows: 130px;
-    width: 200px;
-    height: 300px;
-    margin-top: 100px;
-    margin-left: 50px;
-  }
-.reset{
-    
-    background-color: #684901;
-    display: inline;
-    text-align: center;
+#movies-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 60px);
+  gap: 200px;
+  grid-auto-rows: 120px;
+  height: 200px;
+  margin-top: 50px;
+  margin-left: 100px;
+}
 
+.movie-card img {
+  box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  width: 150px;
+  height: 200px;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+.movie-card h1 {
+  width: 200px;
+  height: 70px;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-size: 20px;
+  color: floralwhite;
+}
+.reset {
+  background-color: #684901;
+  display: inline;
+  text-align: center;
+}
+
+.loader {
+  bottom: -2px;
 }
